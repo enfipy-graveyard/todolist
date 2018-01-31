@@ -39,5 +39,23 @@ namespace Server.BusinessLogic
             _applicationContext.SaveChanges();
             return _todoConverter.GetModelByEntity(todo);
         }
+
+        public TodoModel EditTodo(int id, string name, string description)
+        {
+            var todo = _applicationContext.Todos.FirstOrDefault(t => t.Id == id);
+            todo.Name = string.IsNullOrEmpty(name) ? todo.Name : name;
+            todo.Description = string.IsNullOrEmpty(name) ? todo.Description : description;
+            _applicationContext.SaveChanges();
+            return _todoConverter.GetModelByEntity(todo);
+        }
+
+        public TodoModel ToggleTodo(int id)
+        {
+            // TODO: Pattern Command
+            var todo = _applicationContext.Todos.FirstOrDefault(t => t.Id == id);
+            todo.Complited = !todo.Complited;
+            _applicationContext.SaveChanges();
+            return _todoConverter.GetModelByEntity(todo);
+        }
     }
 }

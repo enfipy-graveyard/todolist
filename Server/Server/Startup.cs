@@ -26,8 +26,10 @@ namespace Server
         {
             services.AddCors();
 
+            // services.AddScoped<ITag, TagService>();
             services.AddScoped<ITodo, TodoService>();
             services.AddScoped<IModelEntityConverter<TodoModel, Todo>, TodoConverter>();
+            services.AddScoped<IModelEntityConverter<TagModel, Tag>, TagConverter>();
 
             services.AddMvc();
 

@@ -8,5 +8,7 @@ namespace Server.Abstractions
         IEnumerable<TodoModel> FetchTodos();
         TodoModel SaveTodo(TodoModel todo);
         TodoModel RemoveTodo(int id);
+        TodoModel EditTodo(int id, string name, string description);
+        TodoModel ToggleTodo(int id);
     }
 }

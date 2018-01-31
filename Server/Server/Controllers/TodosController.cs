@@ -21,9 +21,23 @@ namespace Server.Controllers
 
         // POST api/todos
         [HttpPost]
-        public TodoModel Post([FromBody]TodoModel todo)
+        public TodoModel Post([FromBody] TodoModel todo)
         {
             return _todo.SaveTodo(todo);
+        }
+
+        // POST api/todos/5
+        [HttpPost("{id}")]
+        public TodoModel Toggle(int id)
+        {
+            return _todo.ToggleTodo(id);
+        }
+
+        // PUT api/todos/5
+        [HttpPut("{id}")]
+        public TodoModel Put(int id, [FromBody] TodoModel todo)
+        {
+            return _todo.EditTodo(id, todo.Name, todo.Description);
         }
 
         // DELETE api/todos/5
