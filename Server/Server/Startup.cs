@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Server.BusinessLogic.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Server.BusinessLogic.Helpers;
 using Server.BusinessLogic;
 using Server.Data.Classes;
 using Server.Abstractions;
@@ -28,8 +30,17 @@ namespace Server
 
             // services.AddScoped<ITag, TagService>();
             services.AddScoped<ITodo, TodoService>();
+            services.AddScoped<IAccount, AccountService>();
+
             services.AddScoped<IModelEntityConverter<TodoModel, Todo>, TodoConverter>();
             services.AddScoped<IModelEntityConverter<TagModel, Tag>, TagConverter>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = AuthOptions.GetValidationParameters();
+                });
 
             services.AddMvc();
 
@@ -51,6 +62,8 @@ namespace Server
                 .AllowAnyHeader()
                 .AllowAnyMethod()
             );
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }

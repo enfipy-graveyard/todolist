@@ -23,8 +23,8 @@ namespace Server.BusinessLogic.Converters
                 Description = model.Description,
                 Complited = model.Complited,
                 Date = model.Date,
-
-                Tags = model.Tags?.Select(t => _tagConverter.GetEntityByModel(t))
+                
+                Tags = model.Tags?.Select(t => _tagConverter.GetEntityByModel(t)).ToList()
             };
         }
 
@@ -39,7 +39,7 @@ namespace Server.BusinessLogic.Converters
                 Complited = entity.Complited,
                 Date = entity.Date,
 
-                Tags = entity.Tags?.Select(t => _tagConverter.GetModelByEntity(t))
+                Tags = entity.Tags?.Select(t => _tagConverter.GetModelByEntity(t)).ToList()
             };
         }
     }

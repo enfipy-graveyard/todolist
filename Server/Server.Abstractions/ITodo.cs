@@ -5,10 +5,10 @@ namespace Server.Abstractions
 {
     public interface ITodo
     {
-        IEnumerable<TodoModel> FetchTodos();
-        TodoModel SaveTodo(TodoModel todo);
-        TodoModel RemoveTodo(int id);
-        TodoModel EditTodo(int id, string name, string description);
-        TodoModel ToggleTodo(int id);
+        IEnumerable<TodoModel> FetchTodos(string login);
+        TodoModel SaveTodo(string login, TodoModel todo);
+        bool RemoveTodo(string login, int id);
+        TodoModel EditTodo(string login, int id, string name, string description);
+        TodoModel ToggleTodo(string login, int id);
     }
 }
