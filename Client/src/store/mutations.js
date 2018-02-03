@@ -1,11 +1,11 @@
-export function edit(state, { type, items }) {
-  state[type] = items
-}
+import { SET_IS_AUTHENTICATED, SEND_MESSAGE } from '@/constants'
 
-export function chatToggle(state) {
-  state.chat = !state.chat
-}
+export default {
+  [SET_IS_AUTHENTICATED] (state, item) {
+    state.authenticated = item.authenticated ? item.authenticated : false
+  },
 
-export function sendMessage(state, item) {
-  state.messages.push(item)
+  [SEND_MESSAGE] (state, item) {
+    state.messages.push(item)
+  },
 }

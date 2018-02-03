@@ -49,5 +49,7 @@ module.exports = {
     'comma-dangle': [ 0 ],
     'semi': ["error", "never"],
     'linebreak-style': [ 0 ],
+    'no-param-reassign': [ 0 ],
+    'no-console': [ 0 ],
   }
 }

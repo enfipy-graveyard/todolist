@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "todo-list",
   "version": "1.0.0",
-  "description": "Template site",
+  "description": "TodoList Client",
   "author": "Dmitry <dm.larukov@gmail.com>",
   "private": true,
   "scripts": {

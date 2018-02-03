@@ -2,28 +2,39 @@
 v-app
   v-toolbar(fixed, app, height='80')
     router-link.nav-link(to='/')
-      v-toolbar-title.title(v-text='title')
-    router-link.nav-link(to='/NotFound')
-      span Hello
-    v-spacer
-    v-btn(icon, @click.stop='$store.dispatch("chatToggle")')
-      v-icon chat
+      v-toolbar-title(v-text='title')
+    div(v-if='$store.state.authenticated')
+      router-link.nav-link(to='/', @click.native='logout()')
+        span Logout
+    div(v-else)
+      router-link.nav-link(to='/login')
+        span Login
+      router-link.nav-link(to='/registration')
+        span Registration
   v-content
     v-container(fluid)
       transition(name='fade')
         router-view
   v-footer(app)
     span © 2018
+    v-spacer
+    span Created by dlarukov
 </template>
 
 <script>
+import { LOGOUT } from '@/constants'
+
 export default {
   data () {
     return {
-      title: 'Title'
+      title: 'TodoList',
     }
   },
-  components: { }
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT)
+    }
+  }
 }
 </script>
 
