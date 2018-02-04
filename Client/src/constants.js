@@ -8,9 +8,11 @@ export const ID_TOKEN = 'id_token'
 /* MUTATION TYPES */
 export const SET_IS_AUTHENTICATED = 'setIsAuthenticated'
 export const SAVE_TODOS = 'saveTodos'
+export const DELETE = 'delete'
 export const SAVE = 'save'
+export const EDIT = 'edit'
 
-/* ACTIOn TYPES */
+/* ACTION TYPES */
 export const LOGIN = 'login'
 export const REGISTRATION = 'registration'
 export const LOGOUT = 'logout'
@@ -18,3 +20,4 @@ export const CHECK_AUTH = 'checkAuth'
 export const GET_AUTH_HEADER = 'getAuthHeader'
 export const FETCH = 'fetch'
 export const GET_TODOS = 'getTodos'
+export const COMPLETE_TODO = 'completeTodo'

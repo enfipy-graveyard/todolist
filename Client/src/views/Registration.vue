@@ -21,19 +21,25 @@ export default {
         login: '',
         password: ''
       },
-      error: ''
+      error: '',
+      processing: false
     }
   },
   methods: {
     submit() {
+      if (this.processing) return
+      this.processing = true
+
       this.$store.dispatch(REGISTRATION, this.credentials).then((res) => {
         if (res.success) {
           this.$router.push({ path: '/' })
         } else {
           this.error = res.error
         }
+        this.processing = false
       }).catch((err) => {
         console.log(err)
+        this.processing = false
       })
     }
   }

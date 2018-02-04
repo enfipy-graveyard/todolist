@@ -9,9 +9,9 @@ v-layout
           span(v-text='todo.description')
       v-card-actions
         v-spacer
-        v-btn(flat, color='red', @click='deleteTodo(todo)') Delete
-        v-btn(flat, color='orange', @click='editTodo(todo)') Edit
-        v-btn(flat, color='green', @click='completeTodo(todo)') Complete
+        v-btn(flat, color='red', @click='$emit("delete-todo", todo)') Delete
+        v-btn(flat, color='orange', @click='$emit("edit-todo", todo)') Edit
+        v-btn(flat, color='green', @click='$emit("complete-todo", todo)') Complete
 </template>
 
 <script>
@@ -21,17 +21,6 @@ v-layout
       return {
         isEditing: false,
       }
-    },
-    methods: {
-      completeTodo(todo) {
-        this.$emit('complete-todo', todo)
-      },
-      deleteTodo(todo) {
-        this.$emit('delete-todo', todo)
-      },
-      editTodo(todo) {
-        this.$emit('edit-todo', todo)
-      },
     },
   }
 </script>

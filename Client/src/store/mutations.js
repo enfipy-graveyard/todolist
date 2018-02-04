@@ -1,4 +1,9 @@
-import { SET_IS_AUTHENTICATED, SAVE, SAVE_TODOS } from '@/constants'
+import {
+  SET_IS_AUTHENTICATED,
+  SAVE, EDIT, COMPLETE_TODO,
+  DELETE,
+  SAVE_TODOS
+} from '@/constants'
 
 export default {
   [SET_IS_AUTHENTICATED] (state, item) {
@@ -11,5 +16,20 @@ export default {
 
   [SAVE_TODOS] (state, items) {
     state.todos = items
+  },
+
+  [DELETE] (state, item) {
+    const index = state.todos.indexOf(item)
+    if (index > -1) {
+      state.todos.splice(index, 1)
+    }
+  },
+
+  [COMPLETE_TODO] (state, item) {
+    state.todos.find(el => el.id === item).completed = item.completed
+  },
+
+  [EDIT] (state, item) {
+    state.todos[item] = item
   },
 }

@@ -11,10 +11,12 @@ v-app
         span Login
       router-link.nav-link(to='/registration')
         span Registration
+
   v-content
     v-container(fluid)
       transition(name='fade')
         router-view
+
   v-footer(app)
     span © 2018
     v-spacer

@@ -5,7 +5,8 @@ import {
   LOGOUT, CHECK_AUTH,
   FETCH, SAVE,
   SAVE_TODOS,
-  GET_TODOS
+  GET_TODOS,
+  DELETE, EDIT, COMPLETE_TODO
 } from '@/constants'
 
 const getResponse = (context, body) => {
@@ -46,6 +47,24 @@ export default {
   [SAVE] (context, payload) {
     services.todos[SAVE](payload).then((res) => {
       context.commit(SAVE, res)
+    })
+  },
+
+  [DELETE] (context, payload) {
+    services.todos[DELETE](payload).then((res) => {
+      if (res.body) context.commit(DELETE, payload)
+    })
+  },
+
+  [COMPLETE_TODO] (context, payload) {
+    services.todos[COMPLETE_TODO](payload).then((res) => {
+      if (res.body) context.commit(COMPLETE_TODO, payload)
+    })
+  },
+
+  [EDIT] (context, payload) {
+    services.todos[EDIT](payload).then((res) => {
+      if (res.body) context.commit(EDIT, res.body)
     })
   },
 }

@@ -1,6 +1,7 @@
 <template lang="pug">
 div
-  todo.todo(v-on:delete-todo='deleteTodo', v-on:complete-todo='completeTodo', v-on:edit-todo='editTodo'
+  todo.todo(v-on:delete-todo='$emit("delete-todo", todo)',
+    v-on:complete-todo='$emit("complete-todo", todo)', v-on:edit-todo='$emit("edit-todo", todo)'
     v-for='todo in todos', :todo.sync='todo', v-bind:key='todo.id')
 </template>
 
@@ -11,17 +12,6 @@ export default {
   props: ['todos'],
   components: {
     Todo,
-  },
-  methods: {
-    deleteTodo(todo) {
-      console.log(todo)
-    },
-    completeTodo(todo) {
-      console.log(todo)
-    },
-    editTodo(todo) {
-      console.log(todo)
-    },
   },
 }
 </script>
