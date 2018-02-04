@@ -25,6 +25,7 @@ namespace Server.Controllers
         [HttpPost]
         public TodoModel Post([FromBody] TodoModel todo)
         {
+            if (todo == null) return null;
             return _todo.SaveTodo(User.Identity.Name, todo);
         }
 
@@ -39,6 +40,7 @@ namespace Server.Controllers
         [HttpPut("{id}")]
         public TodoModel Put(int id, [FromBody] TodoModel todo)
         {
+            if (todo != null) return null;
             return _todo.EditTodo(User.Identity.Name, id, todo.Name, todo.Description);
         }
 

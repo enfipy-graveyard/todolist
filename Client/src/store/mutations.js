@@ -1,11 +1,15 @@
-import { SET_IS_AUTHENTICATED, SEND_MESSAGE } from '@/constants'
+import { SET_IS_AUTHENTICATED, SAVE, SAVE_TODOS } from '@/constants'
 
 export default {
   [SET_IS_AUTHENTICATED] (state, item) {
     state.authenticated = item.authenticated ? item.authenticated : false
   },
 
-  [SEND_MESSAGE] (state, item) {
-    state.messages.push(item)
+  [SAVE] (state, item) {
+    state.todos.push(item)
+  },
+
+  [SAVE_TODOS] (state, items) {
+    state.todos = items
   },
 }

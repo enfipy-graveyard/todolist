@@ -7,7 +7,7 @@ namespace Server.Models
     {
         public TodoModel()
         {
-            Complited = false;
+            Completed = false;
             Date = DateTime.UtcNow;
             Tags = new List<TagModel>();
         }
@@ -15,7 +15,7 @@ namespace Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool Complited { get; set; }
+        public bool Completed { get; set; }
         public DateTime Date { get; set; }
 
         public virtual ICollection<TagModel> Tags { get; set; }

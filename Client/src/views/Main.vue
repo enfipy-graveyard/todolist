@@ -1,26 +1,46 @@
 <template lang="pug">
 v-container(fluid)
   v-slide-y-transition(mode='out-in')
-    v-layout(column, align-center)
-      img.mb-5(src='@/assets/logo.png', alt='Vuetify.js')
-      blockquote(v-if='$store.state.authenticated')
-        | “First, solve the problem. Then, write the code.”
-        footer
-          small
-            em John Johnson
+
+    v-layout(column, align-center, v-if='$store.state.authenticated')
+      .headline(style='margin: 10px') Vue.js Todo App
+      todo-list(v-bind:todos='$store.state.todos')
+      create-todo(v-on:create-todo='createTodo')
+
+    v-layout(column, align-center, v-else)
+      .headline(style='margin: 10px') Login or signup to write down todos
+      v-btn(flat, color='gray', to='/login')
+        span To Login page
+      v-btn(flat, color='gray', to='/registration')
+        span To Registration page
 </template>
 
 <script>
+import { SAVE } from '@/constants'
+import TodoList from '@/components/TodoList'
+import CreateTodo from '@/components/CreateTodo'
+
 export default {
   data () {
     return {
-      title: 'Main'
+      visibility: 'all'
     }
   },
+  components: {
+    TodoList,
+    CreateTodo
+  },
+  methods: {
+    createTodo(newTodo) {
+      this.$store.dispatch(SAVE, newTodo)
+    },
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
+
+@import '../assets/style.styl'
 
 </style>
+

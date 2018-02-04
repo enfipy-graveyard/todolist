@@ -18,7 +18,7 @@ v-app
   v-footer(app)
     span © 2018
     v-spacer
-    span Created by dlarukov
+    span.createdBy Created by dlarukov
 </template>
 
 <script>
@@ -40,13 +40,7 @@ export default {
 
 <style lang="stylus" scoped>
 
-@import './assets/style.styl';
-
-a
-  font-family Arial, Helvetica, sans-serif
-  text-decoration none
-  text-align center
-  color #666 !important
+@import './assets/style.styl'
 
 .fade-enter-active, .fade-leave-active
   transition-property opacity
@@ -58,11 +52,6 @@ a
 .fade-enter, .fade-leave-active
   opacity 0
 
-.nav-link
-  font-weight 300
-  font-size 20px
-  margin-left 20px
-
 .toolbar__title
   font-weight 300
   font-size 30px !important
@@ -70,5 +59,8 @@ a
 
 .navigation-drawer
   padding-bottom formHeight
+
+.createdBy
+  padding-right 10px
 
 </style>

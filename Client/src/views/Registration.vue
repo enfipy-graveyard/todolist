@@ -1,14 +1,14 @@
 <template lang="pug">
-.col-sm-4.col-sm-offset-4
-  h2 Registration
-  p Sign up for a free account to access possibilities write down todos.
-  .alert.alert-info(style='color: black', v-if='error')
-    p {{ error }}
-  .form-group
-    input.form-control(type='text', placeholder='Enter your login', v-model='credentials.login')
-  .form-group
-    input.form-control(type='password', placeholder='Enter your password', v-model='credentials.password')
-  button.btn.btn-primary(@click='submit()') SignUp
+v-container(fluid)
+  v-slide-y-transition(mode='out-in')
+    v-layout(column, align-center)
+      h2 Registration
+      p Sign up for a free account to access possibilities write down todos.
+      v-alert(color='error', icon='warning', value='true', v-if='error' v-text='error')
+      v-form(style='width: 300px')
+        v-text-field(label='Enter your login', v-model='credentials.login', required)
+        v-text-field(label='Enter your password', v-model='credentials.password', type='password', required)
+      button.btn.btn-primary(@click='submit()') SignUp
 </template>
 
 <script>
@@ -24,11 +24,6 @@ export default {
       error: ''
     }
   },
-  // beforeCreate: () => {
-  //   if (this.$store.state.authenticated) {
-  //     this.$router.push({ path: '/' })
-  //   }
-  // },
   methods: {
     submit() {
       this.$store.dispatch(REGISTRATION, this.credentials).then((res) => {

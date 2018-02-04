@@ -63,7 +63,7 @@ namespace Server.BusinessLogic
             var user = _applicationContext.Users.Include(u => u.Todos).FirstOrDefault(u => u.Login == login);
             var todo = user.Todos.FirstOrDefault(t => t.Id == id);
             if (todo == null) return null;
-            todo.Complited = !todo.Complited;
+            todo.Completed = !todo.Completed;
             _applicationContext.SaveChanges();
             return _todoConverter.GetModelByEntity(todo);
         }

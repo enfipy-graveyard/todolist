@@ -21,7 +21,7 @@ namespace Server.BusinessLogic.Converters
                 Id = model.Id,
                 Name = model.Name,
                 Description = model.Description,
-                Complited = model.Complited,
+                Completed = model.Completed,
                 Date = model.Date,
                 
                 Tags = model.Tags?.Select(t => _tagConverter.GetEntityByModel(t)).ToList()
@@ -36,7 +36,7 @@ namespace Server.BusinessLogic.Converters
                 Id = entity.Id,
                 Name = entity.Name,
                 Description = entity.Description,
-                Complited = entity.Complited,
+                Completed = entity.Completed,
                 Date = entity.Date,
 
                 Tags = entity.Tags?.Select(t => _tagConverter.GetModelByEntity(t)).ToList()

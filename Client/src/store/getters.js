@@ -1,11 +1,13 @@
 export default {
-  todos(state) {
-    return state.todos.map(item => ({
-      body: item.body
-    }))
+  all(state) {
+    return state.todos
   },
 
-  tmp(state) {
-    return state.todos
+  active(state) {
+    return state.todos.filter(todo => !todo.completed)
+  },
+
+  completed(state) {
+    return state.todos.filter(todo => todo.completed)
   }
 }
