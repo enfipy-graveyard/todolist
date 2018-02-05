@@ -51,20 +51,14 @@ export default {
   },
 
   [DELETE] (context, payload) {
-    services.todos[DELETE](payload).then((res) => {
-      if (res.body) context.commit(DELETE, payload)
-    })
+    services.todos[DELETE](payload).then(() => context.commit(DELETE, payload))
   },
 
   [COMPLETE_TODO] (context, payload) {
-    services.todos[COMPLETE_TODO](payload).then((res) => {
-      if (res.body) context.commit(COMPLETE_TODO, payload)
-    })
+    services.todos[COMPLETE_TODO](payload).then(res => context.commit(COMPLETE_TODO, res.body))
   },
 
   [EDIT] (context, payload) {
-    services.todos[EDIT](payload).then((res) => {
-      if (res.body) context.commit(EDIT, res.body)
-    })
+    services.todos[EDIT](payload).then(res => context.commit(EDIT, res.body))
   },
 }

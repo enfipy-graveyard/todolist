@@ -63,8 +63,8 @@ export default {
     filteredTodos() {
       const todos = this.$store.getters[this.visibility]
       if (this.search) {
-        return todos.filter(item => item.name.indexOf(this.search)
-          || item.description.indexOf(this.search))
+        return todos.filter(item => item.name.indexOf(this.search) > -1
+          || item.description.indexOf(this.search) > -1)
       }
       return todos
     },

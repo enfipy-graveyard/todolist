@@ -19,14 +19,14 @@ export default {
   },
 
   [DELETE] (state, item) {
-    const index = state.todos.indexOf(item)
+    const index = state.todos.map(x => x.id).indexOf(item)
     if (index > -1) {
       state.todos.splice(index, 1)
     }
   },
 
   [COMPLETE_TODO] (state, item) {
-    state.todos.find(el => el.id === item).completed = item.completed
+    state.todos.find(el => el.id === item.id).completed = item.completed
   },
 
   [EDIT] (state, item) {
