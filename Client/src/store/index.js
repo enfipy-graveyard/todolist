@@ -10,7 +10,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     authenticated: false,
-    todos: []
+    todos: [],
+    todosLoading: false,
+    checkingIsAuthorized: false,
   },
   getters,
   mutations,

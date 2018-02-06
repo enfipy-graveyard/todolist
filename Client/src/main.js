@@ -3,11 +3,10 @@ import Vuetify from 'vuetify'
 import VueResource from 'vue-resource'
 import 'vuetify/dist/vuetify.css'
 
-import services from './services'
 import store from './store'
 import router from './router'
 import sync from './router/sync'
-import { CHECK_AUTH, FETCH } from './constants'
+import { AUTHORIZE } from './constants'
 
 import App from './App'
 
@@ -17,13 +16,8 @@ Vue.use(Vuetify)
 sync(store, router)
 
 Vue.config.productionTip = false
-Vue.http.headers.common.Authorization = services.auth.getAuthHeader().Authorization
 
-store.dispatch(CHECK_AUTH).then(() => {
-  if (store.state.authenticated) {
-    store.dispatch(FETCH)
-  }
-})
+store.dispatch(AUTHORIZE)
 
 /* eslint-disable no-new */
 new Vue({

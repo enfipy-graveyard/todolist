@@ -4,6 +4,7 @@ import {
   LOGIN_URL, SIGNUP_URL,
   LOGIN, REGISTRATION,
   LOGOUT, CHECK_AUTH,
+  AUTHORIZE,
   GET_AUTH_HEADER
 } from '@/constants'
 
@@ -22,6 +23,16 @@ export default {
     })
   },
 
+  [AUTHORIZE] () {
+    const isAuthorized = this[CHECK_AUTH]()
+    if (isAuthorized) {
+      const authHeader = this[GET_AUTH_HEADER]()
+      Vue.http.headers.common.Authorization = authHeader.Authorization
+      return true
+    }
+    return false
+  },
+
   [LOGOUT] () {
     localStorage.removeItem(ID_TOKEN)
   },
@@ -35,5 +46,5 @@ export default {
     return {
       Authorization: `Bearer ${localStorage.getItem(ID_TOKEN)}`
     }
-  }
+  },
 }

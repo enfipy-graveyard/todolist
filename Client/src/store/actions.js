@@ -3,9 +3,9 @@ import {
   SET_IS_AUTHENTICATED,
   LOGIN, REGISTRATION,
   LOGOUT, CHECK_AUTH,
-  FETCH, SAVE,
-  SAVE_TODOS,
-  GET_TODOS,
+  FETCH, SAVE, TODOS_LOADING,
+  SAVE_TODOS, AUTHORIZE,
+  GET_TODOS, CHECK_AUTHORIZE,
   DELETE, EDIT, COMPLETE_TODO
 } from '@/constants'
 
@@ -28,6 +28,16 @@ export default {
       .then(res => getResponse(context, res.body))
   },
 
+  [AUTHORIZE] (context) {
+    context.commit(CHECK_AUTHORIZE, true)
+    const authenticated = services.auth[AUTHORIZE]()
+    if (authenticated) {
+      context.dispatch(FETCH)
+      context.commit(SET_IS_AUTHENTICATED, { authenticated })
+    }
+    context.commit(CHECK_AUTHORIZE, false)
+  },
+
   [LOGOUT] (context) {
     services.auth[LOGOUT]()
     context.commit(SET_IS_AUTHENTICATED, { authenticated: false })
@@ -39,8 +49,10 @@ export default {
   },
 
   [FETCH] (context) {
+    context.commit(TODOS_LOADING, true)
     services.todos[GET_TODOS]().then((res) => {
       context.commit(SAVE_TODOS, res)
+      context.commit(TODOS_LOADING, false)
     })
   },
 

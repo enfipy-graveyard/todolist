@@ -12,7 +12,8 @@ v-container(fluid)
           span Active
         v-btn(flat, color='gray', @click='visibility = "completed"')
           span Completed
-      todo-list(v-bind:todos='filteredTodos', v-on:delete-todo='deleteTodo',
+      v-progress-circular(v-if='$store.state.todosLoading', indeterminate, v-bind:size='50', color='primary')
+      todo-list(v-else v-bind:todos='filteredTodos', v-on:delete-todo='deleteTodo',
         v-on:complete-todo='completeTodo', v-on:edit-todo='editTodo')
       create-todo(v-on:create-todo='createTodo')
       //- edit-todo(v-if='selectedEditTodo', todo.sync='selectedEditTodo', v-on:edit-todo='editTodo')
@@ -36,8 +37,6 @@ export default {
     return {
       visibility: 'all',
       search: '',
-      editedTodo: null,
-      items: ['Item One', 'Item Seventeen', 'Item Five']
     }
   },
   components: {

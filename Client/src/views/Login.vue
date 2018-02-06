@@ -12,7 +12,7 @@ v-container(fluid)
 </template>
 
 <script>
-import { LOGIN } from '@/constants'
+import { LOGIN, AUTHORIZE } from '@/constants'
 
 export default {
   data() {
@@ -32,6 +32,7 @@ export default {
 
       this.$store.dispatch(LOGIN, this.credentials).then((res) => {
         if (res.success) {
+          this.$store.dispatch(AUTHORIZE)
           this.$router.push({ path: '/' })
         } else {
           this.error = res.error

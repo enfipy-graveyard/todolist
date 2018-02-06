@@ -15,7 +15,8 @@ v-app
   v-content
     v-container(fluid)
       transition(name='fade')
-        router-view
+        v-progress-circular(v-if='$store.state.checkingIsAuthorized', indeterminate, v-bind:size='50', color='primary')
+        router-view(v-else)
 
   v-footer(app)
     span © 2018
